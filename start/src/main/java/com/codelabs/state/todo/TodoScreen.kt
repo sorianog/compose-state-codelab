@@ -23,10 +23,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Button
-import androidx.compose.material.Icon
-import androidx.compose.material.LocalContentColor
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -41,6 +38,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.codelabs.state.util.generateRandomTodoItem
+import com.google.android.material.color.MaterialColors
 import java.time.format.TextStyle
 import kotlin.random.Random
 
@@ -70,7 +68,9 @@ fun TodoScreen(
                 TodoRow(
                     todo = it,
                     onItemClicked = { onRemoveItem(it) },
-                    modifier = Modifier.fillParentMaxWidth().padding(vertical = 6.dp, horizontal = 6.dp)
+                    modifier = Modifier
+                        .fillParentMaxWidth()
+                        .padding(vertical = 6.dp, horizontal = 6.dp)
                 )
             }
         }
@@ -80,7 +80,7 @@ fun TodoScreen(
             onClick = { onAddItem(generateRandomTodoItem()) },
             modifier = Modifier
                 .padding(16.dp)
-                .fillMaxWidth(),
+                .fillMaxWidth()
         ) {
             Text("Add random item")
         }
@@ -136,7 +136,7 @@ fun TodoInputTextField(text: String, onTextChange: (String) -> Unit, modifier: M
 @Composable
 fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
     val (text, setText) = remember { mutableStateOf("") }
-    val (icon, setIcon) = remember { mutableStateOf(TodoIcon.Default)}
+    val (icon, setIcon) = remember { mutableStateOf(TodoIcon.Default) }
     val iconsVisible = text.isNotBlank()
     val submit = {
         onItemComplete(TodoItem(text, icon))
@@ -150,7 +150,8 @@ fun TodoItemInput(onItemComplete: (TodoItem) -> Unit) {
         onIconChange = setIcon,
         submit = submit,
         iconsVisible = iconsVisible
-    )}
+    )
+}
 
 @Composable
 fun TodoItemInput(
@@ -178,7 +179,9 @@ fun TodoItemInput(
             TodoEditButton(
                 onClick = submit, // pass the submit callback to TodoEditButton
                 text = "Add",
-                modifier = Modifier.align(Alignment.CenterVertically),
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .background(Color.Green, RoundedCornerShape(size = 4.dp)),
                 enabled = text.isNotBlank()
             )
         }
