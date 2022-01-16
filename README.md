@@ -8,7 +8,7 @@ data flow is, and how to apply it in a Jetpack Compose application to build stat
 
 ## Screenshots
 
-![Finished code](screenshots/state_movie.gif "After: Animation of fully completed project")
+![Demo 1](screenshots/sorianog-state-compose-shot1.png "Demo 1: Partially filled list of To Do items")
 
 ## License
 
